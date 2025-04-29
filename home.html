@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Take Care 💌</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="prompt-text" id="helloText">Hello darling 💖</div>
+
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="openEnvelope()">
+        <div class="envelope">
+            <div class="back"></div>
+            <div class="front"></div>
+            <div class="top"></div>
+        </div>
+    </div>
+
+    <div class="prompt-text small-text" id="clickText">Click on the envelope 💌</div>
+
+    <div class="letter" id="letter">
+        <div class="message-content">
+            <h1>Hey my love 🌸</h1>
+            <p>I LOVE YOUU SOO MUCHH MY DARLINGG! 💖</p>
+            <p>Rest well and know that I'm always sending you all the love, cuddles, and warm hugs! 💖</p>
+            <div class="gifs">
+                <img src="{{ url_for('static', filename='gifs/cat-cuddle.gif') }}" alt="Cat Cuddle">
+                <img src="{{ url_for('static', filename='gifs/heart-rainbow.gif') }}" alt="Heart Rainbow">
+                <img src="{{ url_for('static', filename='gifs/sleepy-bear.gif') }}" alt="Sleepy Bear">
+            </div>
+        </div>
+    </div>
+
+    <div id="hearts"></div>
+</div>
+
+<script>
+function openEnvelope() {
+    document.getElementById('envelopeWrapper').classList.add('fade-out');
+    document.getElementById('helloText').classList.add('fade-out');
+    document.getElementById('clickText').classList.add('fade-out');
+
+    setTimeout(() => {
+        document.getElementById('letter').classList.add('slide-out');
+    }, 500); 
+
+    createHearts();
+    document.getElementById('envelopeWrapper').onclick = null;
+}
+
+function createHearts() {
+    const heartsContainer = document.getElementById('hearts');
+    for (let i = 0; i < 20; i++) {
+        let heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+        heartsContainer.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+    }
+}
+</script>
+
+</body>
+</html>
